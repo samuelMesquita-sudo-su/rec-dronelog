@@ -47,7 +47,6 @@ public class DroneService {
     public DroneResponseDTO atualizar(Long id, DroneRequestDTO dto) {
         Drone drone = buscarDrone(id);
         // TODO: revisar quais campos precisam entrar na atualização.
-        drone.setIdDrone(id);
         drone.setIdentificador(dto.identificador());
         drone.setModelo(dto.modelo());
         drone.setAutonomiaMinutos(dto.autonomiaMinutos());

@@ -19,6 +19,12 @@ public class GlobalExceptionHandler {
     }
 
     //TODO: tratar recurso não encontrado (NOT_FOUND)
+    @ExceptionHandler(RecursoNaoEncontradoException.class)
+    public ResponseEntity<Map<String, String>> tratarRecurso(RecursoNaoEncontradoException ex){
+        Map<String, String> erro = new HashMap<>();
+        erro.put("erro", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
+    }
 
     // TODO: avaliar se algum erro comum ainda chega sem tratamento adequado.
 }

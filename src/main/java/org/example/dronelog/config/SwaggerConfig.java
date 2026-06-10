@@ -13,8 +13,8 @@ public class SwaggerConfig {
         // TODO: deixar a documentação compatível com o tema da API.
         return new OpenAPI()
                 .info(new Info()
-                        .title("")
+                        .title("DroneLog")
                         .version("1.0")
-                        .description(""));
+                        .description("API para logs de missoes de drones"));
     }
 }

@@ -75,7 +75,7 @@ public class MissaoVooService {
 
     public MissaoVooResponseDTO atualizar(Long id, MissaoVooRequestDTO dto) {
         // TODO: recuperar o registro existente e aplicar alterações permitidas.
-        MissaoVoo missaoVoo = new MissaoVoo();
+        MissaoVoo missaoVoo = buscarMissao(id);
         missaoVoo.setIdMissao(id);
         missaoVoo.setTitulo(dto.titulo());
         missaoVoo.setLocalOperacao(dto.localOperacao());

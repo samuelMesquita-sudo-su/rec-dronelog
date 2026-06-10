@@ -29,6 +29,7 @@ public class MissaoVoo {
 
     // TODO: relacionar corretamente com o equipamento/drone utilizado.
     @ManyToOne
+    @JoinColumn(name = "missao_drone")
     private Drone drone;
 
     public MissaoVoo() {

@@ -1,5 +1,7 @@
 package org.example.dronelog.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.example.dronelog.dto.MissaoVooRequestDTO;
 import org.example.dronelog.dto.MissaoVooResponseDTO;
 import org.example.dronelog.model.StatusMissao;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Tag(name = "Missao", description = "Rotas para gerenciamento de missoes")
 @RestController
 @RequestMapping("/missoes")
 public class MissaoVooController {
@@ -39,20 +42,21 @@ public class MissaoVooController {
     }
 
     @PostMapping
-    public MissaoVooResponseDTO cadastrar(@RequestBody MissaoVooRequestDTO dto) {
+    public MissaoVooResponseDTO cadastrar(@Valid @RequestBody MissaoVooRequestDTO dto) {
         // TODO: registrar a missão considerando os vínculos necessários.
         return missaoVooService.cadastrar(dto);
     }
 
     @PutMapping("/{id}")
-    public MissaoVooResponseDTO atualizar(@PathVariable Long id, @RequestBody MissaoVooRequestDTO dto) {
+    public MissaoVooResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody MissaoVooRequestDTO dto) {
         // TODO: atualizar uma missão já cadastrada.
         return missaoVooService.atualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+    public /*ResponseEntity<Void>*/ void deletar(@PathVariable Long id) {
         // TODO: remover uma missão quando for permitido.
-        return ResponseEntity.noContent().build();
+        missaoVooService.deletar(id);
+        /*return ResponseEntity.noContent().build();*/
     }
 }

@@ -37,7 +37,7 @@ public class PilotoService {
 
     public PilotoResponseDTO cadastrar(PilotoRequestDTO dto) {
         Piloto piloto = new Piloto();
-        piloto.setNome(piloto.getNome());
+        piloto.setNome(dto.nome());
         piloto.setRegistroAnac(dto.registroAnac());
         piloto.setEmail(dto.email());
         piloto.setAtivo(dto.ativo());
@@ -49,7 +49,6 @@ public class PilotoService {
 
     public PilotoResponseDTO atualizar(Long id, PilotoRequestDTO dto) {
         Piloto piloto = buscarPiloto(id);
-        piloto.setIdPiloto(id);
         piloto.setNome(dto.nome());
         piloto.setRegistroAnac(dto.registroAnac());
         piloto.setEmail(dto.email());

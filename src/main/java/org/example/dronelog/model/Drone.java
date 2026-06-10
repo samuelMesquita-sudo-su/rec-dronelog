@@ -21,7 +21,7 @@ public class Drone {
     private Boolean disponivel;
 
     // TODO: ajustar o lado adequado para histórico de missões
-    @OneToMany(mappedBy = "missoes")
+    @OneToMany(mappedBy = "drone")
     private List<MissaoVoo> missoes = new ArrayList<>();
 
     public Drone() {
