@@ -24,13 +24,14 @@ public class PilotoService {
         // TODO: usar o parâmetro recebido quando fizer sentido.
         List<Piloto> pilotos;
 
-        if (nome == null)
+        if (nome != null)
         {
-            pilotos = pilotoRepository.findAll();
+            pilotos = pilotoRepository.findByNomeEqualsIgnoreCase(nome);
+
         }
         else
         {
-            pilotos = pilotoRepository.findByNomeEqualsIgnoreCase(nome);
+            pilotos = pilotoRepository.findAll();
         }
 
         return pilotos.stream().map(this::toResponse).toList();
