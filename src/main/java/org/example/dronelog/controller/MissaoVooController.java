@@ -1,5 +1,6 @@
 package org.example.dronelog.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.example.dronelog.dto.MissaoVooRequestDTO;
@@ -25,6 +26,7 @@ public class MissaoVooController {
         this.missaoVooService = missaoVooService;
     }
 
+    @Operation(summary = "Listar todas as missoes")
     @GetMapping
     public List<MissaoVooResponseDTO> listar(
             @RequestParam(required = false) StatusMissao status,
@@ -35,28 +37,31 @@ public class MissaoVooController {
         return missaoVooService.listar(status, localOperacao, dataPrevista);
     }
 
+    @Operation(summary = "Buscar missao por ID")
     @GetMapping("/{id}")
     public MissaoVooResponseDTO buscarPorId(@PathVariable Long id) {
         // TODO: buscar uma missão específica.
         return missaoVooService.buscarPorId(id);
     }
 
+    @Operation(summary = "Cadastrar uma missao")
     @PostMapping
     public MissaoVooResponseDTO cadastrar(@Valid @RequestBody MissaoVooRequestDTO dto) {
         // TODO: registrar a missão considerando os vínculos necessários.
         return missaoVooService.cadastrar(dto);
     }
 
+    @Operation(summary = "Atualizar os dados de uma missao")
     @PutMapping("/{id}")
     public MissaoVooResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody MissaoVooRequestDTO dto) {
         // TODO: atualizar uma missão já cadastrada.
         return missaoVooService.atualizar(id, dto);
     }
 
+    @Operation(summary = "Deletar os dados de uma missao por ID")
     @DeleteMapping("/{id}")
-    public /*ResponseEntity<Void>*/ void deletar(@PathVariable Long id) {
+    public void deletar(@PathVariable Long id) {
         // TODO: remover uma missão quando for permitido.
         missaoVooService.deletar(id);
-        /*return ResponseEntity.noContent().build();*/
     }
 }

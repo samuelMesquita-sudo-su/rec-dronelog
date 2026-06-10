@@ -29,22 +29,26 @@ public class DroneController {
         return droneService.listar(disponivel);
     }
 
+    @Operation(summary = "Busca drone por ID")
     @GetMapping("/{id}")
     public DroneResponseDTO buscarPorId(@PathVariable Long id) {
         return droneService.buscarPorId(id);
     }
 
+    @Operation(summary = "Cadastra dados de um drone")
     @PostMapping
     public DroneResponseDTO cadastrar(@Valid @RequestBody DroneRequestDTO dto) {
         return droneService.cadastrar(dto);
     }
 
+    @Operation(summary = "Atualiza os dados de um drone")
     @PutMapping("/{id}")
     public DroneResponseDTO atualizar(@PathVariable Long id, @Valid @RequestBody DroneRequestDTO dto) {
         // TODO: conferir se a atualização segue o mesmo padrão do cadastro.
         return droneService.atualizar(id, dto);
     }
 
+    @Operation(summary = "Deleta um drone pelo ID")
     @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id) {
         // TODO: verificar se existe alguma regra antes de remover. - FEITO
