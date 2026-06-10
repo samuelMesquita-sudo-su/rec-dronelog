@@ -22,12 +22,18 @@ public class PilotoService {
 
     public List<PilotoResponseDTO> listar(String nome) {
         // TODO: usar o parâmetro recebido quando fizer sentido.
-        if (nome.isBlank())
+        List<Piloto> pilotos;
+
+        if (nome == null)
         {
-            return pilotoRepository.findAll().stream().map(this::toResponse).toList();
-        }else {
-            return pilotoRepository.findByNomeEqualsIgnoreCase(nome).stream().map(this::toResponse).toList();
+            pilotos = pilotoRepository.findAll();
         }
+        else
+        {
+            pilotos = pilotoRepository.findByNomeEqualsIgnoreCase(nome);
+        }
+
+        return pilotos.stream().map(this::toResponse).toList();
     }
 
     public PilotoResponseDTO buscarPorId(Long id) {

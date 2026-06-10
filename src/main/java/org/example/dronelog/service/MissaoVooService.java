@@ -29,15 +29,19 @@ public class MissaoVooService {
 
     public List<MissaoVooResponseDTO> listar(StatusMissao status, String localOperacao, LocalDate dataPrevista) {
         // TODO: construir a listagem e os filtros necessários.
+        List<MissaoVoo> missoes;
+
         if (status != null){
-            return buscarStatus(status);
+            missoes = missaoVooRepository.findByStatus(status);
         } else if (localOperacao != null) {
-            return buscarLocalOperacao(localOperacao);
+            missoes = missaoVooRepository.findByLocalOperacao(localOperacao);
         } else if (dataPrevista != null) {
-            return buscarDataPrevista(dataPrevista);
+            missoes = missaoVooRepository.findByDataPrevista(dataPrevista);
         }else {
-            return missaoVooRepository.findAll().stream().map(this::toResponse).toList();
+            missoes = missaoVooRepository.findAll();
         }
+
+        return missoes.stream().map(this::toResponse).toList();
     }
 
     public List<MissaoVooResponseDTO> buscarStatus(StatusMissao status){
